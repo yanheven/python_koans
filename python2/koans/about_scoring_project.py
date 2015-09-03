@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import itertools
+
 from runner.koan import *
 
 
@@ -35,7 +37,24 @@ from runner.koan import *
 
 def score(dice):
     # You need to write this method
-    pass
+    dice = sorted(dice)
+    point = 0
+    dice_group = itertools.groupby(dice)
+    for k, v in dice_group:
+        length = len(list(v))
+        if length>2:
+            if k == 1:
+                point += 1000 + 100 * (length -3)
+            else:
+                point += k*100
+            if k == 5:
+                point += 50 * (length-3)
+        elif k == 1:
+            point += 100 * length
+        elif k == 5:
+            point += 50 * length
+    return point
+    
 
 
 class AboutScoringProject(Koan):
