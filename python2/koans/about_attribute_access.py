@@ -122,7 +122,7 @@ class AboutAttributeAccess(Koan):
             # Using 'object' directly because using super() here will also
             # trigger a __getattribute__() call.
             result = object.__getattribute__(self, attr_name)
-            print result
+
             return result
 
         def my_method(self):
